@@ -2,6 +2,7 @@
 #include <ctime>
 #include <iostream>
 #include <thread>
+#include <curses.h>
 
 
 int main(int argc, char* argv[])
@@ -10,8 +11,15 @@ int main(int argc, char* argv[])
         std::cout << "Give one parameter, time in seconds!" << std::endl;
         return 0;
     }
+    int seconds;
+    try {
+        seconds = std::stoi(argv[1]);
+    }
+    catch (std::invalid_argument& e) {
+        std::cout << "Error with input: " << e.what() << std::endl;
+        return -1;
+    }
 
-    int seconds = std::stoi(argv[1]);
     int minutes = 0;
     if (seconds > 59) {
         minutes = seconds / 60;
@@ -34,6 +42,7 @@ int main(int argc, char* argv[])
         }
         }
     std::cout << "Times up!" << std::endl;
+    std::cout << '\a';
 
 
     return 0;
