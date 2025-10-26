@@ -27,12 +27,14 @@ int main(int argc, char* argv[])
     }
 
     while (seconds >= 1) {
-        std::cout << std::format("{:02}", minutes) << ":" << std::format("{:02}", seconds) << std::endl;
+        std::cout << "Time remaining: " << std::format("{:02}", minutes) << ":" << std::format("{:02}", seconds) << '\r';
+        std::cout.flush();
         std::this_thread::sleep_for(std::chrono::seconds(1));
 
         if (seconds == 1 && minutes > 0) {
             seconds--;
-            std::cout << std::format("{:02}", minutes) << ":" << std::format("{:02}", seconds) << std::endl;
+            std::cout << std::format("{:02}", minutes) << ":" << std::format("{:02}", seconds) << '\r';// << std::endl;
+            std::cout.flush();
             std::this_thread::sleep_for(std::chrono::seconds(1));
 
             seconds = 59;
@@ -41,8 +43,7 @@ int main(int argc, char* argv[])
             seconds--;
         }
         }
-    std::cout << "Times up!" << std::endl;
-    std::cout << '\a';
+    std::cout << "\nTimes up!" << std::endl;
 
 
     return 0;
