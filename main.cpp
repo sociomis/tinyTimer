@@ -4,11 +4,28 @@
 #include <thread>
 #include <curses.h>
 
+void GUI() {
+    std::cout << "Welcome to tinyTimer!" << std::endl;
+    std::string userInput = "";
+    while(true) {
+        std::cout << ":q                quit application" << std::endl;
+        std::cout << ":t [time in s]    start timer" << std::endl;
+
+        std::cout << "> ";
+        std::cin >> userInput;
+        if(userInput == ":q") {
+            return;
+        }
+    }
+}
 
 int main(int argc, char* argv[])
 {
-    if (argc != 2){
-        std::cout << "Give one parameter, time in seconds!" << std::endl;
+    if (argc > 2){
+        std::cout << "Give time in seconds or give no parameters to launch gui" << std::endl;
+        return 0;
+    } else if (argc == 1) {
+        GUI();
         return 0;
     }
     int seconds;
@@ -44,6 +61,7 @@ int main(int argc, char* argv[])
         }
         }
     std::cout << "\nTimes up!" << std::endl;
+    std::cout << '\a';
 
 
     return 0;
