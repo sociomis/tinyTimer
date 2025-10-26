@@ -5,16 +5,22 @@
 #include <curses.h>
 
 void GUI() {
+    std::string commands = ":q                quit application \n:t [time in s]    start timer\n:help             print commands";
     std::cout << "Welcome to tinyTimer!" << std::endl;
+    std::cout << commands << std::endl;
+
     std::string userInput = "";
     while(true) {
-        std::cout << ":q                quit application" << std::endl;
-        std::cout << ":t [time in s]    start timer" << std::endl;
 
         std::cout << "> ";
         std::cin >> userInput;
         if(userInput == ":q") {
             return;
+        } else if (userInput == ":help") {
+            std::cout << commands << std::endl;
+        }
+        else {
+            std::cout << "Unknown command" << std::endl;
         }
     }
 }
